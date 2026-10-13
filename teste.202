@@ -1,0 +1,139 @@
+# Python 3
+# Arquivo: teste.202
+# Mostra um coração ASCII e a frase "EU TE AMO" em 100 idiomas.
+
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
+
+heart = [
+    "      ***       ***      ",
+    "    ********   ********   ",
+    "  *********************** ",
+    " ************************* ",
+    " ************************* ",
+    "  ************************ ",
+    "    *********************  ",
+    "      *****************    ",
+    "        **************     ",
+    "          ********        ",
+    "            ****          ",
+    "             **           "
+]
+
+translations = [
+    ("01", "Português", "Eu te amo"),
+    ("02", "Inglês", "I love you"),
+    ("03", "Espanhol", "Te amo"),
+    ("04", "Francês", "Je t'aime"),
+    ("05", "Alemão", "Ich liebe dich"),
+    ("06", "Italiano", "Ti amo"),
+    ("07", "Holandês", "Ik hou van jou"),
+    ("08", "Sueco", "Jag älskar dig"),
+    ("09", "Dinamarquês", "Jeg elsker dig"),
+    ("10", "Norueguês", "Jeg elsker deg"),
+    ("11", "Finlandês", "Rakastan sinua"),
+    ("12", "Estoniano", "Ma armastan sind"),
+    ("13", "Letão", "Es tevi mīlu"),
+    ("14", "Lituano", "Aš tave myliu"),
+    ("15", "Polonês", "Kocham cię"),
+    ("16", "Tcheco", "Miluji tě"),
+    ("17", "Eslovaco", "Milujem ťa"),
+    ("18", "Húngaro", "Szeretlek"),
+    ("19", "Romeno", "Te iubesc"),
+    ("20", "Búlgaro", "Обичам те"),
+    ("21", "Sérvio", "Volim te"),
+    ("22", "Croata", "Volim te"),
+    ("23", "Esloveno", "Ljubim te"),
+    ("24", "Albanês", "Të dua"),
+    ("25", "Grego", "Σ' αγαπώ"),
+    ("26", "Turco", "Seni seviyorum"),
+    ("27", "Azerbaijano", "Mən səni sevirəm"),
+    ("28", "Persa", "دوستت دارم"),
+    ("29", "Árabe", "أحبك"),
+    ("30", "Hebraico", "אני אוהב אותך"),
+    ("31", "Amárico", "እኔ እንደምወድህ አውቃለሁ"),
+    ("32", "Suaíli", "Nakupenda"),
+    ("33", "Somali", "Waan jeclahay"),
+    ("34", "Hausa", "Ina son ka"),
+    ("35", "Iorubá", "Mo nifẹ rẹ"),
+    ("36", "Igbo", "A hụrụ m gị n'anya"),
+    ("37", "Zulu", "Ngiyakuthanda"),
+    ("38", "Xhosa", "Ndiyakuthanda"),
+    ("39", "Africâner", "Ek het jou lief"),
+    ("40", "Malgaxe", "Tiako ianao"),
+    ("41", "Tailandês", "ผมรักคุณ"),
+    ("42", "Vietnamita", "Anh yêu em"),
+    ("43", "Khmer", "ខ្ញុំស្រឡាញ់អ្នក"),
+    ("44", "Lao", "ຂ້ອຍຮັກເຈົ້າ"),
+    ("45", "Birmanês", "ကျွန်ုပ်မင်းကိုချစ်ပါတယ်"),
+    ("46", "Malaio", "Saya sayang awak"),
+    ("47", "Indonésio", "Saya cinta kamu"),
+    ("48", "Tagalo", "Mahal kita"),
+    ("49", "Japonês", "愛してる"),
+    ("50", "Coreano", "사랑해"),
+    ("51", "Chinês (Simplificado)", "我爱你"),
+    ("52", "Chinês (Tradicional)", "我愛你"),
+    ("53", "Hindi", "मैं तुमसे प्यार करता हूँ"),
+    ("54", "Bengali", "আমি তোমাকে ভালবাসি"),
+    ("55", "Marathi", "मी तुझ्यावर प्रेम करतो"),
+    ("56", "Gujarati", "હું તને પ્રેમ કરું છું"),
+    ("57", "Punjabi", "ਮੈਂ ਤੈਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ"),
+    ("58", "Urdu", "میں تم سے پیار کرتا ہوں"),
+    ("59", "Nepali", "म तपाईंलाई माया गर्छु"),
+    ("60", "Sinhala", "මම ඔබව ආදර කරමි"),
+    ("61", "Tamil", "நான் உன்னை 사랑ிக்கிறேன்"),
+    ("62", "Telugu", "నేను నిన్ను ప్రేమిస్తున్నాను"),
+    ("63", "Kannada", "ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ"),
+    ("64", "Malayalam", "ഞാൻ നിന്നെ സ്നേഹിക്കുന്നു"),
+    ("65", "Assamês", "মই তোমাক প্রেম করি"),
+    ("66", "Caxemira", "مین تس زار کورا"),
+    ("67", "Pashto", "زه تاسو سره میرانم"),
+    ("68", "Curdo", "Min te dildarim"),
+    ("69", "Georgiano", "მიყვარხარ"),
+    ("70", "Armênio", "Ես քեզ սիրում եմ"),
+    ("71", "Cazaque", "Мен сені жақсы көремін"),
+    ("72", "Uzbeque", "Men seni sevaman"),
+    ("73", "Quirguiz", "Мен сени сүйөм"),
+    ("74", "Tajique", "Ман туро дӯст медорам"),
+    ("75", "Mongol", "Би чамайг хайртай"),
+    ("76", "Russo", "Я тебя люблю"),
+    ("77", "Ucraniano", "Я тебе кохаю"),
+    ("78", "Bielorrusso", "Я цябе люблю"),
+    ("79", "Irlandês", "Grá mo chroí duit"),
+    ("80", "Gaélico Escocês", "Tha gaol agam ort"),
+    ("81", "Galês", "Rwy'n dy garu di"),
+    ("82", "Catalão", "T'estimo"),
+    ("83", "Basco", "Maite zaitut"),
+    ("84", "Galego", "Quéroche"),
+    ("85", "Esperanto", "Mi amas vin"),
+    ("86", "Latim", "Te amo"),
+    ("87", "Islandês", "Ég elska þig"),
+    ("88", "Faroês", "Eg elski teg"),
+    ("89", "Samoano", "Ou te alofa ia te oe"),
+    ("90", "Havaiano", "Aloha au iā ʻoe"),
+    ("91", "Maori", "Kei te aroha ahau ki a koe"),
+    ("92", "Taitiano", "Ua here au ia oe"),
+    ("93", "Quechua", "Qhawaykuyki"),
+    ("94", "Guarani", "Nderejapysõ"),
+    ("95", "Aimará", "Amaratawa"),
+    ("96", "Swabian", "I lieb di"),
+    ("97", "Iídiche", "איך האָב דיך ליב"),
+    ("98", "Romani", "Me te dikhava"),
+    ("99", "Bambara", "Mǝ la fɛ"),
+    ("100", "Hmong", "Kuv hlub koj"),
+]
+
+print("\n" * 2)
+for linha in heart:
+    print(linha.center(60))
+
+print("\n" + "EU TE AMO".center(60))
+print("=" * 60)
+print("Lista em 100 idiomas:".center(60))
+print("=" * 60)
+
+for numero, idioma, frase in translations:
+    print(f"{numero:>3}. {idioma:<20} - {frase}")
+
+print("\n" + "♥" * 20 + " TE AMO MUITO! " + "♥" * 20)

@@ -1,0 +1,2 @@
+Este é um arquivo de texto criado na mesma pasta do script.
+Conteúdo aleatório apenas para demonstração.
